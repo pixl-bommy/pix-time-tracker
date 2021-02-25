@@ -1,0 +1,15 @@
+{
+  "name": "pixl-time-tracker",
+  "version": "1.0.0-wip",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Thomas Borck",
+    "email": "mail@bommy.net",
+    "url": "http://bommy.net"
+  },
+  "license": "ISC"
+}
