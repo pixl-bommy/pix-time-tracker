@@ -42,5 +42,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
-  ]
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist/renderer.js'),
+    compress: true,
+    port: 9000
+  }
 };
