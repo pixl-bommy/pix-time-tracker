@@ -11,5 +11,8 @@
     "email": "mail@bommy.net",
     "url": "http://bommy.net"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.2.2"
+  }
 }
