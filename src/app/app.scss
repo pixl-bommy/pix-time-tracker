@@ -6,8 +6,14 @@
 
 .app {
    padding: 8px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: stretch;
+   height: 100vh;
+}
 
-   > * {
-      margin-bottom: 8px;
-   }
+.button-list:not(:last-child),
+.button-list > *:not(:last-child) {
+   margin-bottom: 8px;
 }

@@ -12,6 +12,10 @@
 
    font-size: 2rem;
    color: blue;
+
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .TimeTracker:hover {
