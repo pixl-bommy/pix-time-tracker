@@ -2,6 +2,7 @@ import React from "react";
 import "./TimeTracker.scss";
 
 interface TimeTrackerProps {
+   label: string;
    selected?: boolean;
    onClick?: () => void;
 }
@@ -11,7 +12,7 @@ function TimeTracker(props: TimeTrackerProps): JSX.Element {
       <input
          className={`TimeTracker ${props.selected && "selected"}`}
          type="button"
-         value="Kekse"
+         value={props.label}
          onClick={props.onClick}
       />
    );
