@@ -2,7 +2,7 @@ import { app, BrowserWindow } from 'electron';
 import isDev from 'electron-is-dev';
 
 const createWindow = (): void => {
-  let win = new BrowserWindow({
+  const win = new BrowserWindow({
     height: 640,
     width: 360,
     resizable: false,

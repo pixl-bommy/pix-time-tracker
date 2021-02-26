@@ -1,7 +1,12 @@
 import React from "react";
 import "./TimeTracker.scss";
 
-const TimeTracker = (props:any):JSX.Element => {
+interface TimeTrackerProps {
+    selected?:boolean;
+    onClick?:()=>void;
+}
+
+const TimeTracker = (props:TimeTrackerProps):JSX.Element => {
     return(
         <input
             className={`TimeTracker ${props.selected && "selected"}`}

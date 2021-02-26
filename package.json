@@ -7,7 +7,9 @@
     "react:dev": "webpack serve --mode=development",
     "electron:dev": "nodemon",
     "dev": "concurrently --kill-others \"npm run react:dev\" \"npm run electron:dev\"",
-    "start": "npm run build && electron dist/main.js"
+    "start": "npm run build && electron dist/main.js",
+    "lint": "npx eslint . --ext .ts,.tsx",
+    "lint:fix": "npx eslint . --ext .ts,.tsx --fix"
   },
   "keywords": [],
   "author": {
@@ -19,10 +21,13 @@
   "devDependencies": {
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
     "concurrently": "^6.0.0",
     "css-loader": "^5.1.0",
     "electron": "^11.3.0",
     "electron-is-dev": "^1.2.0",
+    "eslint": "^7.20.0",
     "html-webpack-plugin": "^5.2.0",
     "nodemon": "^2.0.7",
     "react": "^17.0.1",

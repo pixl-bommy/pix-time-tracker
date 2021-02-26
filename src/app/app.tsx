@@ -2,7 +2,7 @@ import TimeTracker from '@/components/TimeTracker';
 import React from 'react';
 import './app.scss';
 
-const App = () => {
+const App = ():JSX.Element => {
   const [selected, select]=React.useState(0);
 
   return (
