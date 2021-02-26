@@ -3,13 +3,17 @@ import isDev from 'electron-is-dev';
 
 const createWindow = (): void => {
   let win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    height: 640,
+    width: 360,
+    resizable: false,
+    x:0,
+    y:0,
+    autoHideMenuBar:true,
     webPreferences: {
       nodeIntegration: true
     }
   });
-  console.log(isDev);
+
   win.loadURL(
     isDev
       ? 'http://localhost:9000'
