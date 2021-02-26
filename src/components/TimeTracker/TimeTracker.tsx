@@ -7,13 +7,14 @@ interface TimeTrackerProps {
 }
 
 function TimeTracker(props: TimeTrackerProps): JSX.Element {
-    return (
-        <input
-            className={`TimeTracker ${props.selected && "selected"}`}
-            type="button"
-            value="Kekse"
-            onClick={props.onClick} />
-    );
+   return (
+      <input
+         className={`TimeTracker ${props.selected && "selected"}`}
+         type="button"
+         value="Kekse"
+         onClick={props.onClick}
+      />
+   );
 }
 
 export default TimeTracker;
