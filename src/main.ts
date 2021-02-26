@@ -1,11 +1,15 @@
 import { app, BrowserWindow } from "electron";
 import isDev from "electron-is-dev";
+
+import nodeFs from "fs";
+import nodePath from "path";
+
 import { TrayMenu } from "./electron/TrayMenu";
 
-const createWindow = (): BrowserWindow => {
+const createWindow = (config: { bounds?: Electron.Rectangle } = {}): BrowserWindow => {
    const win = new BrowserWindow({
-      height: 640,
-      width: 360,
+      height: config?.bounds?.height || 640,
+      width: config?.bounds?.width || 360,
       resizable: true,
       x: 0,
       y: 0,
@@ -20,12 +24,43 @@ const createWindow = (): BrowserWindow => {
    return win;
 };
 
-const appElements: { tray: TrayMenu; windows: BrowserWindow[] } = {
+const configFile = nodePath.resolve(__dirname, "app.cfg");
+
+async function writeConfig(config: { bounds: Electron.Rectangle }): Promise<void> {
+   return new Promise((resolve, reject) => {
+      nodeFs.writeFile(configFile, JSON.stringify(config), (error) => {
+         if (error) reject(error);
+         return resolve();
+      });
+   });
+}
+
+async function loadConfig(): Promise<{ bounds: Electron.Rectangle }> {
+   return new Promise((resolve, reject) => {
+      nodeFs.readFile(configFile, "", (error, data) => {
+         if (error) reject(error);
+         return resolve(JSON.parse(data || "{}"));
+      });
+   });
+}
+
+const appElements: { tray: TrayMenu; window: BrowserWindow } = {
    tray: null,
-   windows: [],
+   window: null,
 };
 
-app.on("ready", () => {
-   // appElements.tray = new TrayMenu();
-   appElements.windows.push(createWindow());
+app.on("ready", async () => {
+   let config;
+
+   try {
+      config = await loadConfig();
+   } catch (_) {
+      config = null;
+   }
+
+   appElements.window = createWindow(config);
+   appElements.window.on("close", () => {
+      const config = { bounds: appElements.window.getBounds() };
+      writeConfig(config);
+   });
 });
