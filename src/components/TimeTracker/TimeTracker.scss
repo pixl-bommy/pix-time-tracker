@@ -1,28 +1,28 @@
 .TimeTracker {
-    display: block;
-    padding: 24px 16px;
-    width: 100%;
+   display: block;
+   padding: 24px 16px;
+   width: 100%;
 
-    border: none;
-    outline: none;
-    background: none;
+   border: none;
+   outline: none;
+   background: none;
 
-    border: 1px solid blue;
-    border-radius: 8px;
+   border: 1px solid blue;
+   border-radius: 8px;
 
-    font-size: 2rem;
-    color: blue;
+   font-size: 2rem;
+   color: blue;
 }
 
 .TimeTracker:hover {
-    background: rgba(0, 0, 255, 0.15);
+   background: rgba(0, 0, 255, 0.15);
 }
 
 .TimeTracker.selected {
-    color: white;
-    background: blue;
+   color: white;
+   background: blue;
 }
 
 .TimeTracker.selected:hover {
-    background: rgba(0, 0, 255, 0.85);
+   background: rgba(0, 0, 255, 0.85);
 }
