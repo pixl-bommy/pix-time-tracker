@@ -12,7 +12,7 @@
       "lint:fix": "npx eslint . --ext .ts,.tsx --fix",
       "prettier": "prettier --config .prettierrc 'src/**/*.ts'",
       "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts' --write",
-      "postinstall": "husky install"
+      "postinstall": "npx husky install"
    },
    "keywords": [],
    "author": {
