@@ -4,14 +4,15 @@ import { ipcRenderer } from "electron";
 import TimeTracker from "@/components/TimeTracker";
 
 import "./app.scss";
+import ActionAdder from "@/components/ActionAdder";
 
 const actions = [
    { label: "Programmieren", action: "programming" },
    { label: "Support", action: "support" },
-   { label: "Meeting", action: "meeting" },
-   { label: "Planung", action: "planning" },
-   { label: "Unterbrechung", action: "interrupts" },
-   { label: "Verwaltung", action: "management" },
+   // { label: "Meeting", action: "meeting" },
+   // { label: "Planung", action: "planning" },
+   // { label: "Unterbrechung", action: "interrupts" },
+   // { label: "Verwaltung", action: "management" },
 ];
 
 function App(): JSX.Element {
@@ -33,6 +34,11 @@ function App(): JSX.Element {
                   onClick={select}
                />
             ))}
+            <ActionAdder
+               onClick={() => {
+                  console.log("add action");
+               }}
+            />
          </div>
          <div className="bottom button-list">
             <TimeTracker label="Pause" action="pause" selected={selected} onClick={select} />
