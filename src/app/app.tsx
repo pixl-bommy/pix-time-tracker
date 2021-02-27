@@ -7,11 +7,10 @@ import "./app.scss";
 import ActionAdder from "@/components/ActionAdder";
 import OverlayAddAction from "@/components/OverlayAddAction";
 
-const actions = new Map<string, string>();
-
 function App(): JSX.Element {
    const [selected, select] = React.useState("");
    const [showAdder, setShowAdder] = React.useState(false);
+   const [actions, setActions] = React.useState(new Map<string, string>());
 
    useEffect(() => {
       ipcRenderer.sendSync("select-action", selected);
@@ -38,7 +37,12 @@ function App(): JSX.Element {
             open={showAdder}
             onCancel={() => setShowAdder(false)}
             onCreate={(action, indicator) => {
-               actions.set(indicator, action);
+               if (!actions.has(indicator)) {
+                  const nextActions = new Map(actions);
+                  nextActions.set(indicator, action);
+                  setActions(nextActions);
+               }
+
                setShowAdder(false);
                select(indicator);
             }}
