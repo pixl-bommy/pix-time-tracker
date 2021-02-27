@@ -5,18 +5,13 @@ import TimeTracker from "@/components/TimeTracker";
 
 import "./app.scss";
 import ActionAdder from "@/components/ActionAdder";
+import OverlayAddAction from "@/components/OverlayAddAction";
 
-const actions = [
-   { label: "Programmieren", action: "programming" },
-   { label: "Support", action: "support" },
-   // { label: "Meeting", action: "meeting" },
-   // { label: "Planung", action: "planning" },
-   // { label: "Unterbrechung", action: "interrupts" },
-   // { label: "Verwaltung", action: "management" },
-];
+const actions = new Map<string, string>();
 
 function App(): JSX.Element {
-   const [selected, select] = React.useState(actions[0].action);
+   const [selected, select] = React.useState("");
+   const [showAdder, setShowAdder] = React.useState(false);
 
    useEffect(() => {
       ipcRenderer.sendSync("select-action", selected);
@@ -25,24 +20,29 @@ function App(): JSX.Element {
    return (
       <div className="app">
          <div className="top button-list">
-            {actions.map((action) => (
+            {Array.from(actions).map(([key, value]) => (
                <TimeTracker
-                  key={action.action}
-                  label={action.label}
-                  action={action.action}
+                  key={key}
+                  label={value}
+                  action={key}
                   selected={selected}
                   onClick={select}
                />
             ))}
-            <ActionAdder
-               onClick={() => {
-                  console.log("add action");
-               }}
-            />
+            <ActionAdder onClick={() => setShowAdder(true)} />
          </div>
          <div className="bottom button-list">
             <TimeTracker label="Pause" action="pause" selected={selected} onClick={select} />
          </div>
+         <OverlayAddAction
+            open={showAdder}
+            onCancel={() => setShowAdder(false)}
+            onCreate={(action, indicator) => {
+               actions.set(indicator, action);
+               setShowAdder(false);
+               select(indicator);
+            }}
+         />
       </div>
    );
 }
