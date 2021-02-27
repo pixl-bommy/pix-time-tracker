@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./OverlayAddAction.scss";
 
 interface OvverlayAddActionProps {
@@ -16,6 +16,8 @@ export default function OverlayAddAction({
    const [actionIndicator, setActionIndicator] = useState("");
    const [indicator, setIndicator] = useState("");
 
+   const focusRef = useRef<HTMLInputElement>();
+
    useEffect(() => {
       setIndicator(actionIndicator || actionName.toLocaleLowerCase());
    }, [actionName, actionIndicator]);
@@ -24,6 +26,12 @@ export default function OverlayAddAction({
       setActionName("");
       setActionIndicator("");
    }, [open]);
+
+   useEffect(() => {
+      if (focusRef.current) {
+         focusRef.current.focus();
+      }
+   }, [open, focusRef.current]);
 
    if (!open) return null;
 
@@ -35,6 +43,7 @@ export default function OverlayAddAction({
                placeholder="new action name"
                onChange={(event) => setActionName(event?.target?.value)}
                value={actionName}
+               ref={focusRef}
             />
             <input
                type="text"
