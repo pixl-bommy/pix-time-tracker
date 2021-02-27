@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, ipcMain, BrowserWindow } from "electron";
 import isDev from "electron-is-dev";
 
 import nodeFs from "fs";
@@ -63,4 +63,10 @@ app.on("ready", async () => {
       const config = { bounds: appElements.window.getBounds() };
       writeConfig(config);
    });
+});
+
+ipcMain.on("select-action", (event, action: string) => {
+   const logEntry = JSON.stringify({ timestamp: Date.now(), action });
+   console.log(logEntry);
+   event.returnValue = "";
 });

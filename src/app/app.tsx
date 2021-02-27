@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { ipcRenderer } from "electron";
 
 import TimeTracker from "@/components/TimeTracker";
 
@@ -17,9 +18,7 @@ function App(): JSX.Element {
    const [selected, select] = React.useState(actions[0].action);
 
    useEffect(() => {
-      const logEntry = JSON.stringify({ timestamp: Date.now(), selected });
-      console.log(logEntry);
-      process.stdout.write(logEntry + "\n");
+      ipcRenderer.sendSync("select-action", selected);
    }, [selected]);
 
    return (
@@ -29,17 +28,14 @@ function App(): JSX.Element {
                <TimeTracker
                   key={action.action}
                   label={action.label}
-                  selected={selected === action.action}
-                  onClick={() => select(action.action)}
+                  action={action.action}
+                  selected={selected}
+                  onClick={select}
                />
             ))}
          </div>
          <div className="bottom button-list">
-            <TimeTracker
-               label="Pause"
-               selected={selected === "pause"}
-               onClick={() => select("pause")}
-            />
+            <TimeTracker label="Pause" action="pause" selected={selected} onClick={select} />
          </div>
       </div>
    );

@@ -8,11 +8,11 @@
       "electron:dev": "nodemon",
       "dev": "concurrently --kill-others \"npm run react:dev\" \"npm run electron:dev\"",
       "start": "npm run build && electron dist/main.js",
-      "lint": "npx eslint . --ext .ts,.tsx",
-      "lint:fix": "npx eslint . --ext .ts,.tsx --fix",
-      "prettier": "npx prettier --config .prettierrc 'src/**/*.ts'",
-      "prettier:fix": "npx prettier --config .prettierrc 'src/**/*.ts' --write",
-      "postinstall": "npx husky install"
+      "lint": "eslint . --ext .ts,.tsx",
+      "lint:fix": "eslint . --ext .ts,.tsx --fix",
+      "prettier": "prettier --config .prettierrc 'src/**/*.ts'",
+      "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts' --write",
+      "postinstall": "husky install"
    },
    "keywords": [],
    "author": {

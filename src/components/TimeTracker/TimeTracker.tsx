@@ -3,17 +3,20 @@ import "./TimeTracker.scss";
 
 interface TimeTrackerProps {
    label: string;
-   selected?: boolean;
-   onClick?: () => void;
+   action: string;
+   selected?: string;
+   onClick?: (action: string) => void;
 }
 
-function TimeTracker(props: TimeTrackerProps): JSX.Element {
+function TimeTracker({ action, label, selected, onClick }: TimeTrackerProps): JSX.Element {
+   const isSelected = selected && selected === action;
+
    return (
       <input
-         className={`TimeTracker ${props.selected && "selected"}`}
+         className={`TimeTracker ${isSelected && "selected"}`}
          type="button"
-         value={props.label}
-         onClick={props.onClick}
+         value={label}
+         onClick={() => onClick(action)}
       />
    );
 }
