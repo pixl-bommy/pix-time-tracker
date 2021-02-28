@@ -18,7 +18,9 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
    }, [initialActions]);
 
    useEffect(() => {
-      ipcRenderer.sendSync("select-action", selected);
+      if (selected === "pause" || actions.get(selected)) {
+         ipcRenderer.sendSync("select-action", selected);
+      }
    }, [selected]);
 
    return (

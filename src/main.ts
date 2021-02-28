@@ -26,6 +26,7 @@ const createWindow = (config: { bounds?: Electron.Rectangle } = {}): BrowserWind
 
 const configFile = nodePath.resolve(__dirname, "app.config");
 const actionsFile = nodePath.resolve(__dirname, "actions.config");
+const timestampsFile = nodePath.resolve(__dirname, "timestamps.csv");
 
 async function writeConfig(config: { bounds: Electron.Rectangle }): Promise<void> {
    return new Promise((resolve, reject) => {
@@ -67,8 +68,8 @@ app.on("ready", async () => {
 });
 
 ipcMain.on("select-action", (event, action: string) => {
-   const logEntry = JSON.stringify({ timestamp: Date.now(), action });
-   console.log(logEntry);
+   const logEntry = Date.now() + "," + action;
+   nodeFs.appendFile(timestampsFile, logEntry, "utf8", (err) => console.log(logEntry, err));
    event.returnValue = "";
 });
 
