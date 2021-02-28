@@ -24,7 +24,8 @@ const createWindow = (config: { bounds?: Electron.Rectangle } = {}): BrowserWind
    return win;
 };
 
-const configFile = nodePath.resolve(__dirname, "app.cfg");
+const configFile = nodePath.resolve(__dirname, "app.config");
+const actionsFile = nodePath.resolve(__dirname, "actions.config");
 
 async function writeConfig(config: { bounds: Electron.Rectangle }): Promise<void> {
    return new Promise((resolve, reject) => {
@@ -69,4 +70,30 @@ ipcMain.on("select-action", (event, action: string) => {
    const logEntry = JSON.stringify({ timestamp: Date.now(), action });
    console.log(logEntry);
    event.returnValue = "";
+});
+
+ipcMain.on("actions-store", (event, actions) => {
+   nodeFs.writeFile(actionsFile, JSON.stringify(actions), { encoding: "utf8" }, (error) => {
+      if (error) event.returnValue = error;
+      else event.returnValue = null;
+   });
+});
+
+ipcMain.on("actions-load", (event) => {
+   nodeFs.readFile(actionsFile, "utf8", (error, data: string) => {
+      const response: Map<string, string> = new Map<string, string>();
+
+      if (error) {
+         console.log("ERROR:", error);
+      } else {
+         console.log("NOERROR:", data);
+
+         const json: { [key: string]: string } = JSON.parse(data || "{}");
+         Object.entries(json).forEach(([key, value]) => {
+            response.set(key, value);
+         });
+      }
+
+      event.reply("actions-loaded", response);
+   });
 });
