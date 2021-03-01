@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { ipcRenderer } from "electron";
 
+import IconStop from "@material-ui/icons/Stop";
+
 import TimeTracker from "@/components/TimeTracker";
 
 import "./app.scss";
@@ -18,7 +20,7 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
    }, [initialActions]);
 
    useEffect(() => {
-      if (selected === "pause" || actions.get(selected)) {
+      if (selected === "pause" || selected === "end" || actions.get(selected)) {
          ipcRenderer.sendSync("select-action", selected);
       }
    }, [selected]);
@@ -38,6 +40,13 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
             <ActionAdder onClick={() => setShowAdder(true)} />
          </div>
          <div className="bottom button-list">
+            <TimeTracker
+               label={<IconStop style={{ transform: "scale(2)" }} />}
+               action="end"
+               small
+               selected={selected || "end"}
+               onClick={(next) => selected !== "" && select(next)}
+            />
             <TimeTracker label="Pause" action="pause" selected={selected} onClick={select} />
          </div>
          <OverlayAddAction

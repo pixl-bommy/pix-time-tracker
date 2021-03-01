@@ -18,6 +18,10 @@
    text-overflow: ellipsis;
 }
 
+.TimeTracker.small {
+   width: 33%;
+}
+
 .TimeTracker:hover {
    background: #0000ff26;
 }

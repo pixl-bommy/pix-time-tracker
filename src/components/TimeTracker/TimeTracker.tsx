@@ -2,22 +2,23 @@ import React from "react";
 import "./TimeTracker.scss";
 
 interface TimeTrackerProps {
-   label: string;
+   label: string | React.ReactNode;
    action: string;
    selected?: string;
+   small?: boolean;
    onClick?: (action: string) => void;
 }
 
-function TimeTracker({ action, label, selected, onClick }: TimeTrackerProps): JSX.Element {
+function TimeTracker({ action, label, selected, small, onClick }: TimeTrackerProps): JSX.Element {
    const isSelected = selected && selected === action;
 
    return (
-      <input
-         className={`TimeTracker ${isSelected && "selected"}`}
-         type="button"
-         value={label}
+      <button
+         className={`TimeTracker ${isSelected && "selected"} ${small && "small"}`}
          onClick={() => onClick(action)}
-      />
+      >
+         {label}
+      </button>
    );
 }
 
