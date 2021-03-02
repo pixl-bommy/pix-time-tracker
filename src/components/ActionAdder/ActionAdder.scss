@@ -19,11 +19,16 @@
 }
 
 .ActionAdder:active,
-.ActionAdder:hover {
+.ActionAdder:hover,
+.ActionAdder.editmode {
    background: #80808026;
    border: 1px dashed #808080;
 }
 
 .ActionAdder:active {
    background: #8080806c;
+}
+
+.ActionAdder.editmode {
+   text-align: center;
 }

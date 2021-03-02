@@ -37,7 +37,26 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
                   onClick={select}
                />
             ))}
-            <ActionAdder onClick={() => setShowAdder(true)} />
+            <ActionAdder
+               onClick={() => setShowAdder(true)}
+               onCreate={(action) => {
+                  const indicator = action.toLocaleLowerCase().replace(" ", "-");
+
+                  if (!actions.has(indicator)) {
+                     const nextActions = new Map(actions);
+                     nextActions.set(indicator, action);
+                     setActions(nextActions);
+
+                     const payload: { [key: string]: string } = {};
+                     nextActions.forEach((value, key) => {
+                        payload[key] = value;
+                     });
+                     ipcRenderer.sendSync("actions-store", payload);
+                  }
+
+                  select(indicator);
+               }}
+            />
          </div>
          <div className="bottom button-list">
             <TimeTracker
