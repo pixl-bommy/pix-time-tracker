@@ -1,10 +1,15 @@
 .app {
-   padding: 8px;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
    align-items: stretch;
    height: 100vh;
+   max-height: 100vh;
+   overflow: hidden;
+
+   .top {
+      overflow-y: auto;
+   }
 
    .bottom {
       display: flex;
@@ -13,6 +18,10 @@
       button:not(:last-child) {
          margin-right: 8px;
       }
+   }
+
+   > div {
+      padding: 4px;
    }
 }
 
