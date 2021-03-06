@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { ipcRenderer } from "electron";
 
+import IconBack from "@material-ui/icons/ChevronLeft";
 import IconInterrupt from "@material-ui/icons/FlashOn";
 import IconPause from "@material-ui/icons/Pause";
 import IconStop from "@material-ui/icons/Stop";
@@ -33,6 +34,11 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
 
    return (
       <div className="app">
+         <div>
+            <button className="text-button">
+               <IconBack />
+            </button>
+         </div>
          <div className="top button-list">
             {Array.from(actions).map(([key, value]) => (
                <TimeTracker
@@ -63,6 +69,7 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
                }}
             />
          </div>
+         <div style={{ flexGrow: 1 }}></div>
          <div className="bottom button-list">
             {staticActions.map(({ action, icon }) => (
                <TimeTracker

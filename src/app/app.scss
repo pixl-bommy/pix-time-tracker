@@ -25,6 +25,16 @@
    }
 }
 
+button.text-button {
+   background: none;
+   border: none;
+   border-radius: 8px;
+   outline: none;
+}
+button.text-button:hover {
+   background: rgba(0, 0, 0, 0.25);
+}
+
 .button-list:not(:last-child),
 .button-list:not(.bottom) > *:not(:last-child) {
    margin-bottom: 8px;
