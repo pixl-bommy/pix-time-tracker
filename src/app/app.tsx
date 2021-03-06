@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { ipcRenderer } from "electron";
 
+import IconInterrupt from "@material-ui/icons/FlashOn";
+import IconPause from "@material-ui/icons/Pause";
 import IconStop from "@material-ui/icons/Stop";
 
 import TimeTracker from "@/components/TimeTracker";
@@ -8,8 +10,14 @@ import TimeTracker from "@/components/TimeTracker";
 import "./app.scss";
 import ActionAdder from "@/components/ActionAdder";
 
+const staticActions = [
+   { action: "end", icon: <IconStop style={{ transform: "scale(2)" }} /> },
+   { action: "pause", icon: <IconPause style={{ transform: "scale(2)" }} /> },
+   { action: "interrupt", icon: <IconInterrupt style={{ transform: "scale(2)" }} /> },
+];
+
 function App({ initialActions }: { initialActions: Map<string, string> }): JSX.Element {
-   const [selected, select] = React.useState("");
+   const [selected, select] = React.useState("end");
    const [actions, setActions] = React.useState(new Map<string, string>());
 
    useEffect(() => {
@@ -18,7 +26,7 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
    }, [initialActions]);
 
    useEffect(() => {
-      if (selected === "pause" || selected === "end" || actions.get(selected)) {
+      if (actions.get(selected) || staticActions.find(({ action }) => action === selected)) {
          ipcRenderer.sendSync("select-action", selected);
       }
    }, [selected]);
@@ -56,14 +64,16 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
             />
          </div>
          <div className="bottom button-list">
-            <TimeTracker
-               label={<IconStop style={{ transform: "scale(2)" }} />}
-               action="end"
-               small
-               selected={selected || "end"}
-               onClick={(next) => selected !== "" && select(next)}
-            />
-            <TimeTracker label="Pause" action="pause" selected={selected} onClick={select} />
+            {staticActions.map(({ action, icon }) => (
+               <TimeTracker
+                  key={action}
+                  label={icon}
+                  action={action}
+                  selected={selected}
+                  onClick={select}
+                  small
+               />
+            ))}
          </div>
       </div>
    );
