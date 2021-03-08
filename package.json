@@ -11,8 +11,7 @@
       "lint": "eslint . --ext .ts,.tsx",
       "lint:fix": "eslint . --ext .ts,.tsx --fix",
       "prettier": "prettier --config .prettierrc 'src/**/*.ts'",
-      "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts' --write",
-      "postinstall": "husky install"
+      "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts' --write"
    },
    "keywords": [],
    "author": {
@@ -35,7 +34,6 @@
       "eslint-config-prettier": "^8.1.0",
       "eslint-plugin-prettier": "^3.3.1",
       "html-webpack-plugin": "^5.2.0",
-      "husky": "^5.1.1",
       "nodemon": "^2.0.7",
       "prettier": "^2.2.1",
       "react": "^17.0.1",
