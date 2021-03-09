@@ -1,11 +1,55 @@
 .app {
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
-   align-items: stretch;
+   justify-content: center;
+   align-items: center;
    height: 100vh;
    max-height: 100vh;
    overflow: hidden;
+
+   padding: 24px 0;
+
+   .menu {
+      max-width: 80vw;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      > button {
+         width: 100%;
+         padding: 16px 24px;
+      }
+   }
+
+   > *:not(:last-child) {
+      margin-bottom: 24px;
+   }
+}
+
+.fullscreen-overlay {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: -110vw;
+   width: 100vw;
+   height: 100vh;
+   max-height: 100vh;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: stretch;
+   overflow: hidden;
+
+   background-color: #fff;
+
+   transition: left 0.2s;
+
+   &.slide-in {
+      left: 0;
+   }
 
    .top {
       overflow-y: auto;
@@ -38,22 +82,6 @@ button.text-button:hover {
 .button-list:not(:last-child),
 .button-list:not(.bottom) > *:not(:last-child) {
    margin-bottom: 8px;
-}
-
-.fullscreen-overlay {
-   position: fixed;
-   top: 0;
-   right: 0;
-   bottom: 0;
-   left: 0;
-   width: 100vw;
-   height: 100vh;
-
-   display: flex;
-   align-items: center;
-   justify-content: center;
-
-   background: #000000d9;
 }
 
 .overlay {
