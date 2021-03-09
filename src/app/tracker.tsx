@@ -90,7 +90,6 @@ export default function PageTracker({
                   action={action}
                   selected={selectedAction}
                   onClick={onSelect}
-                  small
                />
             ))}
          </div>

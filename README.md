@@ -19,7 +19,7 @@ I would like to have a little window on one side of my screens, which allows me 
    -  [x] selecting a task, will store it together with a timestamp (local file)
    -  [x] three 'static' task will be shown permanently (end, pause, interrupt)
    -  [x] main menu page
-   -  [ ] create 'one' button for all views...
+   -  [x] create 'one' button for all views...
    -  [ ] buttons may have custom colors
    -  [ ] buttons may have different sizes
    -  [ ] tasks can be edit/deleted

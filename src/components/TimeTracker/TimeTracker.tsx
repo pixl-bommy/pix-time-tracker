@@ -1,5 +1,6 @@
 import React from "react";
-import "./TimeTracker.scss";
+
+import Button from "../GenericButton";
 
 interface TimeTrackerProps {
    label: string | React.ReactNode;
@@ -11,14 +12,12 @@ interface TimeTrackerProps {
 
 function TimeTracker({ action, label, selected, small, onClick }: TimeTrackerProps): JSX.Element {
    const isSelected = selected && selected === action;
+   const currentSize = small ? "quater" : undefined;
 
    return (
-      <button
-         className={`TimeTracker ${isSelected && "selected"} ${small && "small"}`}
-         onClick={() => onClick(action)}
-      >
+      <Button selected={isSelected} size={currentSize} onClick={() => onClick(action)}>
          {label}
-      </button>
+      </Button>
    );
 }
 

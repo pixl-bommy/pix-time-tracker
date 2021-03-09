@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import "./app.scss";
+
+import Button from "../components/GenericButton";
 import PageTracker from "./tracker";
 
 function App({ initialActions }: { initialActions: Map<string, string> }): JSX.Element {
@@ -13,7 +15,7 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
          <div className="app">
             <h1>pixl Time Tracker</h1>
             <div className="menu">
-               <button onClick={() => setOverlay("tracker")}>Tracker Today</button>
+               <Button onClick={() => setOverlay("tracker")}>Tracker Today</Button>
             </div>
             <div style={{ flexGrow: 1 }}></div>
          </div>
