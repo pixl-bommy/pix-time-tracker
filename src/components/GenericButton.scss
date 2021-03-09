@@ -1,0 +1,40 @@
+.GenericButton {
+   display: block;
+   padding: 24px 16px;
+   width: 100%;
+
+   border: none;
+   outline: none;
+   background: none;
+
+   border: 1px solid blue;
+   border-radius: 8px;
+
+   font-size: 2rem;
+   color: blue;
+
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+
+   &.quater {
+      width: 25%;
+   }
+
+   &.half {
+      width: 50%;
+   }
+
+   &:hover {
+      background: #0000ff26;
+   }
+
+   &.selected {
+      color: white;
+      background: blue;
+
+      &:hover {
+         background: #0000ffd9;
+      }
+   }
+}
