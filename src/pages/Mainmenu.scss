@@ -1,0 +1,13 @@
+.Mainmenu {
+    max-width: 80vw;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    > button {
+       width: 100%;
+       padding: 16px 24px;
+    }
+ }

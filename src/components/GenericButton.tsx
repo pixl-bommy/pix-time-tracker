@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
+
 import "./GenericButton.scss";
 
-interface GenericButtonProps {
+export interface GenericButtonProps {
    children?: ReactNode;
    selected?: boolean;
    size?: "quater" | "half" | "full";

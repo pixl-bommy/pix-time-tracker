@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "../GenericButton";
+import Button from "./GenericButton";
 
 interface TimeTrackerProps {
    label: string | React.ReactNode;

@@ -6,10 +6,10 @@ import IconInterrupt from "@material-ui/icons/FlashOn";
 import IconPause from "@material-ui/icons/Pause";
 import IconStop from "@material-ui/icons/Stop";
 
+import ActionAdder from "@/components/ActionAdder";
 import TimeTracker from "@/components/TimeTracker";
 
-import "./app.scss";
-import ActionAdder from "@/components/ActionAdder";
+import "../app/app.scss";
 
 const staticActions = [
    { action: "end", icon: <IconStop style={{ transform: "scale(2)" }} /> },
@@ -17,7 +17,7 @@ const staticActions = [
    { action: "interrupt", icon: <IconInterrupt style={{ transform: "scale(2)" }} /> },
 ];
 
-export default function PageTracker({
+export default function Tracker({
    initialActions,
    selectedAction,
    onSelect,

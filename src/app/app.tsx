@@ -1,9 +1,9 @@
+import Mainmenu from "@/pages/Mainmenu";
 import React, { useState } from "react";
 
-import "./app.scss";
+import Tracker from "../pages/tracker";
 
-import Button from "../components/GenericButton";
-import PageTracker from "./tracker";
+import "./app.scss";
 
 function App({ initialActions }: { initialActions: Map<string, string> }): JSX.Element {
    const [selectedAction, selectAction] = useState("end");
@@ -13,15 +13,11 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
    return (
       <>
          <div className="app">
-            <h1>pixl Time Tracker</h1>
-            <div className="menu">
-               <Button onClick={() => setOverlay("tracker")}>Tracker Today</Button>
-            </div>
-            <div style={{ flexGrow: 1 }}></div>
+            <Mainmenu setOverlay={setOverlay} />
          </div>
 
          <div className={`${overlay === "tracker" && "slide-in"} fullscreen-overlay`}>
-            <PageTracker
+            <Tracker
                initialActions={initialActions}
                selectedAction={selectedAction}
                onSelect={selectAction}
