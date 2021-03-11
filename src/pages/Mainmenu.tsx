@@ -9,7 +9,9 @@ function Mainmenu({ setOverlay }: { setOverlay: (overlay: string) => void }): JS
       <>
          <h1>pixl Time Tracker</h1>
          <div className="Mainmenu">
-            <Button onClick={() => setOverlay("tracker")}>Tracker Today</Button>
+            <Button textcolor="#000" onClick={() => setOverlay("tracker")}>
+               Tracker Today
+            </Button>
          </div>
          <div style={{ flexGrow: 1 }}></div>
       </>

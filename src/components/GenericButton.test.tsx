@@ -18,8 +18,16 @@ describe("<GenericButton />", () => {
          expect(button.props.onClick).toBeUndefined();
       });
 
-      test("basic style", () => {
+      test("basic classes", () => {
          expect(button.props.className).toEqual("GenericButton full");
+      });
+
+      test("basic style", () => {
+         expect(button.props.style).toStrictEqual({
+            backgroundColor: "#fff",
+            borderColor: "#00f",
+            color: "#00f",
+         });
       });
 
       test("no unexpected props", () => {
@@ -27,6 +35,11 @@ describe("<GenericButton />", () => {
             className: "GenericButton full",
             children: undefined,
             onClick: undefined,
+            style: {
+               backgroundColor: "#fff",
+               borderColor: "#00f",
+               color: "#00f",
+            },
          });
       });
    });
@@ -34,6 +47,15 @@ describe("<GenericButton />", () => {
    test("selected = true -> className 'selected' is set", () => {
       const button = GenericButton({ selected: true });
       expect(button.props.className).toEqual("GenericButton selected full");
+   });
+
+   test("selected = true -> style colors inverted", () => {
+      const button = GenericButton({ selected: true });
+      expect(button.props.style).toStrictEqual({
+         backgroundColor: "#00f",
+         borderColor: "#fff",
+         color: "#fff",
+      });
    });
 
    test("size is set -> className is not default 'full'", () => {
@@ -60,5 +82,23 @@ describe("<GenericButton />", () => {
    test("children = 'text' -> button label is 'text'", () => {
       const button = GenericButton({ children: "text" });
       expect(button.props.children).toMatch("text");
+   });
+
+   test("color = red -> background is red", () => {
+      const button = GenericButton({ color: "red" });
+      expect(button.props.style).toStrictEqual({
+         backgroundColor: "red",
+         borderColor: "#00f",
+         color: "#00f",
+      });
+   });
+
+   test("textcolor = red -> color and border is red", () => {
+      const button = GenericButton({ textcolor: "red" });
+      expect(button.props.style).toStrictEqual({
+         backgroundColor: "#fff",
+         borderColor: "red",
+         color: "red",
+      });
    });
 });

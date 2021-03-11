@@ -1,4 +1,6 @@
 .GenericButton {
+   position: relative;
+
    display: block;
    padding: 24px 16px;
    width: 100%;
@@ -7,11 +9,11 @@
    outline: none;
    background: none;
 
-   border: 1px solid blue;
+   border-width: 1px;
+   border-style: solid;
    border-radius: 8px;
 
    font-size: 2rem;
-   color: blue;
 
    overflow: hidden;
    white-space: nowrap;
@@ -25,16 +27,21 @@
       width: 50%;
    }
 
-   &:hover {
-      background: #0000ff26;
+   &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      opacity: 0;
    }
 
-   &.selected {
-      color: white;
-      background: blue;
-
-      &:hover {
-         background: #0000ffd9;
-      }
+   &:hover::before {
+      background-color: currentColor;
+      opacity: 0.2;
+      transition: opacity .5s;
    }
 }

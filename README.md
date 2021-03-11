@@ -20,7 +20,7 @@ I would like to have a little window on one side of my screens, which allows me 
    -  [x] three 'static' task will be shown permanently (end, pause, interrupt)
    -  [x] main menu page
    -  [x] create 'one' button for all views...
-   -  [ ] buttons may have custom colors
+   -  [x] buttons may have custom colors
    -  [ ] buttons may have different sizes
    -  [ ] tasks can be edit/deleted
 -  **next**
