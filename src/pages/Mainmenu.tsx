@@ -9,7 +9,7 @@ function Mainmenu({ setOverlay }: { setOverlay: (overlay: string) => void }): JS
       <>
          <h1>pixl Time Tracker</h1>
          <div className="Mainmenu">
-            <Button textcolor="#000" onClick={() => setOverlay("tracker")}>
+            <Button color="#00f" textcolor="#fff" onClick={() => setOverlay("tracker")}>
                Tracker Today
             </Button>
          </div>
