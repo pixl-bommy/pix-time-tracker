@@ -1,0 +1,21 @@
+.Tracker {
+    height: 100%;
+
+   .top {
+      overflow-y: auto;
+   }
+
+   .bottom {
+      display: flex;
+      flex-direction: row;
+
+      button:not(:last-child) {
+         margin-right: 8px;
+      }
+   }
+
+   .button-list:not(:last-child),
+   .button-list:not(.bottom) > *:not(:last-child) {
+      margin-bottom: 8px;
+   }
+}

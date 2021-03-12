@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 
-import "./ActionAdder.scss";
+import "./ButtonAddAction.scss";
 
-interface ActionAdderProps {
+interface ButtonAddActionProps {
    onCreate: (action: string) => void;
 }
 
-function ActionAdder({ onCreate }: ActionAdderProps): JSX.Element {
+function ButtonAddAction({ onCreate }: ButtonAddActionProps): JSX.Element {
    const inputRef = useRef<HTMLInputElement>();
    const [editMode, setEditMode] = useState(false);
    const [createAction, setCreateAction] = useState("");
@@ -38,7 +38,7 @@ function ActionAdder({ onCreate }: ActionAdderProps): JSX.Element {
 
    return (
       <input
-         className={`ActionAdder ${editMode && "editmode"}`}
+         className={`ButtonAddAction ${editMode && "editmode"}`}
          type={editMode ? "text" : "button"}
          placeholder="add new action"
          ref={inputRef}
@@ -51,4 +51,4 @@ function ActionAdder({ onCreate }: ActionAdderProps): JSX.Element {
    );
 }
 
-export default ActionAdder;
+export default ButtonAddAction;

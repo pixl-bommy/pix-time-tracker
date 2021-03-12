@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { ipcRenderer } from "electron";
 
 import IconBack from "@material-ui/icons/ChevronLeft";
@@ -6,10 +6,12 @@ import IconInterrupt from "@material-ui/icons/FlashOn";
 import IconPause from "@material-ui/icons/Pause";
 import IconStop from "@material-ui/icons/Stop";
 
-import ActionAdder from "@/components/ActionAdder";
-import TimeTracker from "@/components/TimeTracker";
+import ButtonAddAction from "./components/ButtonAddAction";
+import ButtonTimeTracker from "./components/ButtonTimeTracker";
 
-import "../app/app.scss";
+import "../pages-overlay.scss";
+import "./Tracker.scss";
+import { SLIDEOUT_DELAY } from "../pages-overlay";
 
 const staticActions = [
    { action: "end", icon: <IconStop style={{ transform: "scale(2)" }} /> },
@@ -28,6 +30,7 @@ export default function Tracker({
    onSelect: (action: string) => void;
    goToMenu: () => void;
 }): JSX.Element {
+   const containerRef = useRef<HTMLDivElement>(null);
    const [actions, setActions] = React.useState(new Map<string, string>());
 
    useEffect(() => {
@@ -45,15 +48,21 @@ export default function Tracker({
    }, [selectedAction]);
 
    return (
-      <>
+      <div className="Tracker fullscreen-overlay" ref={containerRef}>
          <div>
-            <button className="text-button" onClick={goToMenu}>
+            <button
+               className="text-button"
+               onClick={() => {
+                  containerRef.current.classList.add("slide-out");
+                  setTimeout(goToMenu, SLIDEOUT_DELAY * 1000);
+               }}
+            >
                <IconBack />
             </button>
          </div>
          <div className="top button-list">
             {Array.from(actions).map(([key, value]) => (
-               <TimeTracker
+               <ButtonTimeTracker
                   key={key}
                   label={value}
                   action={key}
@@ -61,7 +70,7 @@ export default function Tracker({
                   onClick={onSelect}
                />
             ))}
-            <ActionAdder
+            <ButtonAddAction
                onCreate={(action) => {
                   const indicator = action.toLocaleLowerCase().replace(" ", "-");
 
@@ -84,7 +93,7 @@ export default function Tracker({
          <div style={{ flexGrow: 1 }}></div>
          <div className="bottom button-list">
             {staticActions.map(({ action, icon }) => (
-               <TimeTracker
+               <ButtonTimeTracker
                   key={action}
                   label={icon}
                   action={action}
@@ -93,6 +102,6 @@ export default function Tracker({
                />
             ))}
          </div>
-      </>
+      </div>
    );
 }

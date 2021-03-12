@@ -1,8 +1,8 @@
 import React from "react";
 
-import Button from "./GenericButton";
+import Button from "@/components/GenericButton";
 
-interface TimeTrackerProps {
+interface ButtonTimeTrackerProps {
    label: string | React.ReactNode;
    action: string;
    selected?: string;
@@ -10,7 +10,13 @@ interface TimeTrackerProps {
    onClick?: (action: string) => void;
 }
 
-function TimeTracker({ action, label, selected, small, onClick }: TimeTrackerProps): JSX.Element {
+function ButtonTimeTracker({
+   action,
+   label,
+   selected,
+   small,
+   onClick,
+}: ButtonTimeTrackerProps): JSX.Element {
    const isSelected = selected && selected === action;
    const currentSize = small ? "quater" : undefined;
 
@@ -21,4 +27,4 @@ function TimeTracker({ action, label, selected, small, onClick }: TimeTrackerPro
    );
 }
 
-export default TimeTracker;
+export default ButtonTimeTracker;

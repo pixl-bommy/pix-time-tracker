@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Button from "../components/GenericButton";
-import Tracker from "../pages/tracker";
+import Tracker from "../pages/Tracker";
 
 import "./app.scss";
 
@@ -22,14 +22,14 @@ function App({ initialActions }: { initialActions: Map<string, string> }): JSX.E
             <div style={{ flexGrow: 1 }}></div>
          </div>
 
-         <div className={`${overlay === "tracker" && "slide-in"} fullscreen-overlay`}>
+         {overlay === "tracker" && (
             <Tracker
                initialActions={initialActions}
                selectedAction={selectedAction}
                onSelect={selectAction}
                goToMenu={() => setOverlay("")}
             />
-         </div>
+         )}
       </>
    );
 }

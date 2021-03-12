@@ -1,4 +1,4 @@
-.ActionAdder {
+.ButtonAddAction {
    display: block;
    padding: 24px 16px;
    width: 100%;
@@ -16,19 +16,19 @@
    overflow: hidden;
    white-space: nowrap;
    text-overflow: ellipsis;
-}
 
-.ActionAdder:active,
-.ActionAdder:hover,
-.ActionAdder.editmode {
-   background: #80808026;
-   border: 1px dashed #808080;
-}
+   &:active,
+   &:hover,
+   &.editmode {
+      background: #80808026;
+      border: 1px dashed #808080;
+   }
 
-.ActionAdder:active {
-   background: #8080806c;
-}
+   &:active {
+      background: #8080806c;
+   }
 
-.ActionAdder.editmode {
-   text-align: center;
+   &.editmode {
+      text-align: center;
+   }
 }
