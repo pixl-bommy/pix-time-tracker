@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { ipcRenderer } from "electron";
 
-import IconBack from "@material-ui/icons/ChevronLeft";
 import IconInterrupt from "@material-ui/icons/FlashOn";
 import IconPause from "@material-ui/icons/Pause";
 import IconStop from "@material-ui/icons/Stop";
@@ -9,9 +8,8 @@ import IconStop from "@material-ui/icons/Stop";
 import ButtonAddAction from "./components/ButtonAddAction";
 import ButtonTimeTracker from "./components/ButtonTimeTracker";
 
-import "../pages-overlay.scss";
 import "./Tracker.scss";
-import { SLIDEOUT_DELAY } from "../pages-overlay";
+import PageOverlay from "../PageOverlay";
 
 const staticActions = [
    { action: "end", icon: <IconStop style={{ transform: "scale(2)" }} /> },
@@ -30,7 +28,6 @@ export default function Tracker({
    onSelect: (action: string) => void;
    goToMenu: () => void;
 }): JSX.Element {
-   const containerRef = useRef<HTMLDivElement>(null);
    const [actions, setActions] = React.useState(new Map<string, string>());
 
    useEffect(() => {
@@ -48,18 +45,7 @@ export default function Tracker({
    }, [selectedAction]);
 
    return (
-      <div className="Tracker fullscreen-overlay" ref={containerRef}>
-         <div>
-            <button
-               className="text-button"
-               onClick={() => {
-                  containerRef.current.classList.add("slide-out");
-                  setTimeout(goToMenu, SLIDEOUT_DELAY * 1000);
-               }}
-            >
-               <IconBack />
-            </button>
-         </div>
+      <PageOverlay className="Tracker" goBack={goToMenu}>
          <div className="top button-list">
             {Array.from(actions).map(([key, value]) => (
                <ButtonTimeTracker
@@ -102,6 +88,6 @@ export default function Tracker({
                />
             ))}
          </div>
-      </div>
+      </PageOverlay>
    );
 }
