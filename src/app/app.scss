@@ -28,6 +28,10 @@
    > button {
       width: 100%;
       padding: 16px 24px;
+
+      &:not(:last-child) {
+         margin-bottom: 4px;
+      }
    }
 }
 
