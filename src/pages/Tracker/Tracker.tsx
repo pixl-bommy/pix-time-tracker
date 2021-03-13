@@ -45,7 +45,7 @@ export default function Tracker({
    }, [selectedAction]);
 
    return (
-      <PageOverlay className="Tracker" goBack={goToMenu}>
+      <PageOverlay className="Tracker" title="Tracker" goBack={goToMenu}>
          <div className="top button-list">
             {Array.from(actions).map(([key, value]) => (
                <ButtonTimeTracker

@@ -24,6 +24,27 @@
    > div {
       padding: 4px;
    }
+
+   > div:first-child {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      color: #fff;
+      background-color: #00f;
+
+      > *:not(:last-child) {
+         margin-right: 8px;
+      }
+
+      button {
+         border: none;
+         outline: none;
+         background: none;
+         color: #fff;
+      }
+   }
 }
 
 @keyframes slide-in {

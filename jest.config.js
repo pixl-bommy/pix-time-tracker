@@ -2,7 +2,7 @@ var IGNORE_PATTERNS = ["/node_modules/", "/dist/"];
 
 module.exports = {
    preset: "ts-jest",
-   testEnvironment: "node",
+   testEnvironment: "jsdom",
    coverageDirectory: "./.reports/coverage",
    collectCoverageFrom: ["**/*.ts", "**/*.tsx"],
    coveragePathIgnorePatterns: IGNORE_PATTERNS,
