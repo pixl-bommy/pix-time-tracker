@@ -67,8 +67,8 @@ app.on("ready", async () => {
    });
 });
 
-ipcMain.on("select-action", (event, action: string) => {
-   const logEntry = Date.now() + "," + action + "\n";
+ipcMain.on("select-action", (event, entry: { task: string; time: number }) => {
+   const logEntry = entry.time + "," + entry.task + "\n";
    nodeFs.appendFile(timestampsFile, logEntry, "utf8", (err) => console.log(logEntry, err));
    event.returnValue = "";
 });

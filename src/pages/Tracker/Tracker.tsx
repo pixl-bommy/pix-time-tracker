@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { ipcRenderer } from "electron";
 
 import IconInterrupt from "@material-ui/icons/FlashOn";
 import IconPause from "@material-ui/icons/Pause";
@@ -10,6 +9,7 @@ import ButtonTimeTracker from "./components/ButtonTimeTracker";
 
 import "./Tracker.scss";
 import PageOverlay from "../PageOverlay";
+import tasks from "@/services/tasks";
 
 const staticActions = [
    { action: "end", icon: <IconStop style={{ transform: "scale(2)" }} /> },
@@ -40,7 +40,7 @@ export default function Tracker({
          actions.get(selectedAction) ||
          staticActions.find(({ action }) => action === selectedAction)
       ) {
-         ipcRenderer.sendSync("select-action", selectedAction);
+         tasks.storeTimeEntry(selectedAction);
       }
    }, [selectedAction]);
 
@@ -63,13 +63,9 @@ export default function Tracker({
                   if (!actions.has(indicator)) {
                      const nextActions = new Map(actions);
                      nextActions.set(indicator, action);
-                     setActions(nextActions);
 
-                     const payload: { [key: string]: string } = {};
-                     nextActions.forEach((value, key) => {
-                        payload[key] = value;
-                     });
-                     ipcRenderer.sendSync("actions-store", payload);
+                     setActions(nextActions);
+                     tasks.storeActionsFile(nextActions);
                   }
 
                   onSelect(indicator);
