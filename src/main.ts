@@ -1,5 +1,4 @@
 import { app, ipcMain, BrowserWindow } from "electron";
-import isDev from "electron-is-dev";
 
 import nodeFs from "fs";
 import nodePath from "path";
@@ -19,7 +18,7 @@ const createWindow = (config: { bounds?: Electron.Rectangle } = {}): BrowserWind
       },
    });
 
-   win.loadURL(isDev ? "http://localhost:9000" : `file://${app.getAppPath()}/index.html`);
+   win.loadURL(app.isPackaged ? "http://localhost:9000" : `file://${app.getAppPath()}/index.html`);
 
    return win;
 };
