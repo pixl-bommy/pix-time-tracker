@@ -9,7 +9,7 @@ import ButtonTimeTracker from "./components/ButtonTimeTracker";
 
 import "./Tracker.scss";
 import PageOverlay from "../PageOverlay";
-import tasks from "@/services/tasks";
+import TaskService from "@/services/TaskService";
 
 const staticActions = [
    { action: "end", icon: <IconStop style={{ transform: "scale(2)" }} /> },
@@ -35,7 +35,7 @@ export default function Tracker({
          actions.get(selectedAction) ||
          staticActions.find(({ action }) => action === selectedAction)
       ) {
-         tasks.storeTimeEntry(selectedAction);
+         TaskService.storeTimeEntry(selectedAction);
       }
    }, [selectedAction]);
 

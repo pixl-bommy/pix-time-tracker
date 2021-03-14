@@ -5,7 +5,7 @@ import Tracker from "@/pages/Tracker";
 import EditTasks from "@/pages/EditTasks";
 
 import "./app.scss";
-import TaskService from "@/services/tasks";
+import TaskService from "@/services/TaskService";
 
 function App({ initialActions }: { initialActions: Map<string, string> }): JSX.Element {
    const [overlay, setOverlay] = useState("");
