@@ -22,7 +22,8 @@ I would like to have a little window on one side of my screens, which allows me 
    -  [x] create 'one' button for all views...
    -  [x] buttons may have custom colors
    -  [ ] buttons may have different sizes
-   -  [ ] tasks can be edit/deleted
+   -  [x] tasks can be edit / ~deleted~
+   -  [ ] tasks can be deleted
 -  **next**
    -  [ ] data can be stored somewhere else
    -  [ ] serve app as mobile website

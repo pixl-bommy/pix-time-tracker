@@ -18,23 +18,18 @@ const staticActions = [
 ];
 
 export default function Tracker({
-   initialActions,
+   actions,
    selectedAction,
+   onCreate,
    onSelect,
    goToMenu,
 }: {
-   initialActions: Map<string, string>;
+   actions: Map<string, string>;
    selectedAction: string;
+   onCreate: (action: string) => void;
    onSelect: (action: string) => void;
    goToMenu: () => void;
 }): JSX.Element {
-   const [actions, setActions] = React.useState(new Map<string, string>());
-
-   useEffect(() => {
-      process.stdout.write(JSON.stringify(initialActions) + "\n");
-      setActions(initialActions);
-   }, [initialActions]);
-
    useEffect(() => {
       if (
          actions.get(selectedAction) ||
@@ -56,21 +51,7 @@ export default function Tracker({
                   onClick={onSelect}
                />
             ))}
-            <ButtonAddAction
-               onCreate={(action) => {
-                  const indicator = action.toLocaleLowerCase().replace(" ", "-");
-
-                  if (!actions.has(indicator)) {
-                     const nextActions = new Map(actions);
-                     nextActions.set(indicator, action);
-
-                     setActions(nextActions);
-                     tasks.storeActionsFile(nextActions);
-                  }
-
-                  onSelect(indicator);
-               }}
-            />
+            <ButtonAddAction onCreate={(action) => onCreate(action)} />
          </div>
          <div style={{ flexGrow: 1 }}></div>
          <div className="bottom button-list">
