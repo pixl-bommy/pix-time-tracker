@@ -18,7 +18,7 @@ const createWindow = (config: { bounds?: Electron.Rectangle } = {}): BrowserWind
       },
    });
 
-   win.loadURL(app.isPackaged ? "http://localhost:9000" : `file://${app.getAppPath()}/index.html`);
+   win.loadURL(!app.isPackaged ? "http://localhost:9000" : `file://${app.getAppPath()}/index.html`);
 
    return win;
 };
